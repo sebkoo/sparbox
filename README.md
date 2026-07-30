@@ -72,16 +72,17 @@ land, so nothing below them renumbers. Hashes and per-commit detail:
 - ✅ **14. The quality gate is visible** — the badge above; the workflow behind it has run on every push and pull request since the fifth commit
 - ✅ **15. The testing rule says what it actually requires** — logic owes tests, a prompt or a rubric's criteria owes a fixture, and only the regression baseline waits for the eval harness
 - ✅ **16. The ladder stops claiming milestones** — a heading naming a milestone goes wrong the first time a commit lands inside that milestone without belonging to it, which had already happened here
+- ✅ **17. Navigation has the shape of the demo** — `index → session/[id] → review/[id]`, plus `settings`, replace the two-tab starter; the route tree is the deep-link config, so `sparbox://session/123` already resolves
 
 **Ahead**
 
-- 🔜 **M1a. The demo path** — 13 of 14 commits remain. Tap a bundled job description, get interviewed on the skills it actually asks for, get scored, and get a ranked weakness report — on a phone, from a clean clone, with no API key, against a deterministic offline provider. **Interview Planner** → **Question Generator** → **Adaptive Follow-up** → **Evaluation Agent**, pure TypeScript under `src/agent/`. Ends with the recording of that run at the top of this page.
+- 🔜 **M1a. The demo path** — 12 of 14 commits remain. Tap a bundled job description, get interviewed on the skills it actually asks for, get scored, and get a ranked weakness report — on a phone, from a clean clone, with no API key, against a deterministic offline provider. **Interview Planner** → **Question Generator** → **Adaptive Follow-up** → **Evaluation Agent**, pure TypeScript under `src/agent/`. Ends with the recording of that run at the top of this page.
 - **M1b. Proof it works** — an eval harness with a committed report, test infrastructure, a debug timeline of the agent's own events, design tokens and accessibility primitives, the network path with bring-your-own-key storage, and the architecture document.
 - **M2. Depth, and the record of it** — `modules/expo-audio-metering` in Swift and Kotlin for spoken answers; quality and safety eval suites; **Progress Memory**, so a second session opens on what the first one exposed; persistence and turn-by-turn replay; telemetry and a gallery of real failures; decision records, rejected approaches, and future removals.
 - **M3. Shipping proof** — feature flags, a paywall stub behind one of them, build profiles, an exercised release path to both stores, a security document, and v0.1.0.
 
 <!-- progress-contract
-commits=16
+commits=17
 -->
 
 ## Quick start
