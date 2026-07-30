@@ -64,16 +64,14 @@ land, so nothing below them renumbers. Hashes and per-commit detail:
 - ✅ **9. The formatting standard is enforced** — checked by the pre-commit hook, proven two-sided in a throwaway clone
 - ✅ **10. One gate, one threshold** — the lint script and the hook now agree on whether a warning is a failure
 
-**The public record**
+**Since the foundation**
 
 - ✅ **11. The plan is public** — the scope contract lands in [docs/ROADMAP.md](docs/ROADMAP.md), and this ladder with it
 - ✅ **12. The front page stops repeating the ladder** — the intro's claim of a four-commit foundation stopped being true at the fifth
 - ✅ **13. The scope contract says what is actually planned** — the published milestones were re-derived rather than copied, and described a split that was never the plan
-
-**M1a — the demo path**
-
 - ✅ **14. The quality gate is visible** — the badge above; the workflow behind it has run on every push and pull request since the fifth commit
 - ✅ **15. The testing rule says what it actually requires** — logic owes tests, a prompt or a rubric's criteria owes a fixture, and only the regression baseline waits for the eval harness
+- ✅ **16. The ladder stops claiming milestones** — a heading naming a milestone goes wrong the first time a commit lands inside that milestone without belonging to it, which had already happened here
 
 **Ahead**
 
@@ -83,7 +81,7 @@ land, so nothing below them renumbers. Hashes and per-commit detail:
 - **M3. Shipping proof** — feature flags, a paywall stub behind one of them, build profiles, an exercised release path to both stores, a security document, and v0.1.0.
 
 <!-- progress-contract
-commits=15
+commits=16
 -->
 
 ## Quick start
