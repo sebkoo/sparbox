@@ -63,9 +63,6 @@ land, so nothing below them renumbers. Hashes and per-commit detail:
 - ✅ **8. The formatting standard is applied** — 25 tracked files brought into line, formatting only
 - ✅ **9. The formatting standard is enforced** — checked by the pre-commit hook, proven two-sided in a throwaway clone
 - ✅ **10. One gate, one threshold** — the lint script and the hook now agree on whether a warning is a failure
-
-**Since the foundation**
-
 - ✅ **11. The plan is public** — the scope contract lands in [docs/ROADMAP.md](docs/ROADMAP.md), and this ladder with it
 - ✅ **12. The front page stops repeating the ladder** — the intro's claim of a four-commit foundation stopped being true at the fifth
 - ✅ **13. The scope contract says what is actually planned** — the published milestones were re-derived rather than copied, and described a split that was never the plan
@@ -74,6 +71,7 @@ land, so nothing below them renumbers. Hashes and per-commit detail:
 - ✅ **16. The ladder stops claiming milestones** — a heading naming a milestone goes wrong the first time a commit lands inside that milestone without belonging to it, which had already happened here
 - ✅ **17. Navigation has the shape of the demo** — `index → session/[id] → review/[id]`, plus `settings`, replace the two-tab starter; the route tree is the deep-link config, so `sparbox://session/123` already resolves
 - ✅ **18. The lint gate agrees with itself on generated files** — `.expo/` was already out of scope for `npm run lint`; the pre-commit hook's broader `eslint .` excludes it too now, so a locally generated file can't fail one path while passing the other
+- ✅ **19. The ladder stops grouping past the foundation** — a heading naming a category goes stale the same way one naming a milestone did; each entry above already says what it is on its own
 
 **Ahead**
 
@@ -83,7 +81,7 @@ land, so nothing below them renumbers. Hashes and per-commit detail:
 - **M3. Shipping proof** — feature flags, a paywall stub behind one of them, build profiles, an exercised release path to both stores, a security document, and v0.1.0.
 
 <!-- progress-contract
-commits=18
+commits=19
 -->
 
 ## Quick start
