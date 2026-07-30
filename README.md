@@ -31,9 +31,9 @@ answers _for_ you.
 ```
 sparbox/
 ├── src/app/        ○  screens (Expo Router)
-├── src/agent/      ○  runtime/ · state/ · tools/ · memory/ · model/ · guards/
-│                      pure TypeScript, no React Native imports, node-testable
-├── evals/          ○  fixture-based evals, shipped in the same commit as the agent code
+├── src/agent/      ○  the interview loop — pure TypeScript, no React Native
+│                      imports, node-testable
+├── evals/          ○  fixture-based agent evals
 ├── modules/        ○  expo-audio-metering — local native module (Swift, Kotlin)
 ├── docs/adr/       ○  decision records
 ├── .githooks/      —  typecheck · lint · format · commit-message checks, on every commit
@@ -62,17 +62,22 @@ land, so nothing below them renumbers. Hashes and per-commit detail:
 - ✅ **8. The formatting standard is applied** — 25 tracked files brought into line, formatting only
 - ✅ **9. The formatting standard is enforced** — checked by the pre-commit hook, proven two-sided in a throwaway clone
 - ✅ **10. One gate, one threshold** — the lint script and the hook now agree on whether a warning is a failure
+
+**The public record**
+
+- ✅ **11. The plan is public** — the scope contract lands in [docs/ROADMAP.md](docs/ROADMAP.md), and this ladder with it
 - ✅ **12. The front page stops repeating the ladder** — the intro's claim of a four-commit foundation stopped being true at the fifth
+- ✅ **13. The scope contract says what is actually planned** — the published milestones were re-derived rather than copied, and described a split that was never the plan
 
 **Ahead**
 
-- 🔜 **M1a. The interview loop, offline** — commits 11–23. Paste a job description, get interviewed on the skills it actually asks for. Five named parts under `src/agent/`, pure TypeScript: **Interview Planner** → **Question Generator** → **Adaptive Follow-up** → **Evaluation Agent** → **Progress Memory**. Runs against a deterministic offline provider, so the loop is testable without a network or a key. Fixture-based evals ship in the same commit as the agent code they cover.
-- **M1b. Bring your own key** — transcripts in a local database on the phone; requests go straight to the provider your key belongs to, with no server in between. Screens under `src/app/`.
-- **M2. Records in the open** — decision records under `docs/adr/`, this scope contract kept current, and the debt register published rather than kept private.
-- **M3. Native audio metering, then release** — `modules/expo-audio-metering` in Swift and Kotlin, for spoken answers — then the app stores.
+- 🔜 **M1a. The demo path** — 13 commits. Tap a bundled job description, get interviewed on the skills it actually asks for, get scored, and get a ranked weakness report — on a phone, from a clean clone, with no API key, against a deterministic offline provider. **Interview Planner** → **Question Generator** → **Adaptive Follow-up** → **Evaluation Agent**, pure TypeScript under `src/agent/`. Ends with the recording of that run at the top of this page.
+- **M1b. Proof it works** — an eval harness with a committed report, test infrastructure, a debug timeline of the agent's own events, design tokens and accessibility primitives, the network path with bring-your-own-key storage, and the architecture document.
+- **M2. Depth, and the record of it** — `modules/expo-audio-metering` in Swift and Kotlin for spoken answers; quality and safety eval suites; **Progress Memory**, so a second session opens on what the first one exposed; persistence and turn-by-turn replay; telemetry and a gallery of real failures; decision records, rejected approaches, and future removals.
+- **M3. Shipping proof** — feature flags, a paywall stub behind one of them, build profiles, an exercised release path to both stores, a security document, and v0.1.0.
 
 <!-- progress-contract
-commits=12
+commits=13
 -->
 
 ## Quick start

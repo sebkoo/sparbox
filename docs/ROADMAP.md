@@ -5,13 +5,13 @@ the commit named. Everything under **Planned** is not built.
 
 ## Status
 
-| Stage                                 | Commits   | State       |
-| ------------------------------------- | --------- | ----------- |
-| Foundation                            | 10 landed | complete    |
-| M1a — the interview loop, offline     | 13        | not started |
-| M1b — bring your own key              | —         | not started |
-| M2 — decision records and public docs | —         | not started |
-| M3 — native module and release        | —         | not started |
+| Stage                            | Commits   | State       |
+| -------------------------------- | --------- | ----------- |
+| Foundation                       | 10 landed | complete    |
+| M1a — the demo path              | 13        | not started |
+| M1b — proof it works             | 10        | not started |
+| M2 — depth, and the record of it | 26        | not started |
+| M3 — shipping proof              | 11        | not started |
 
 ## Shipped — the foundation
 
@@ -30,35 +30,82 @@ the commit named. Everything under **Planned** is not built.
 
 ## Planned
 
-### M1a — the interview loop, offline (13 commits)
+### M1a — the demo path (13 commits)
 
-Paste a job description; get interviewed on the skills it actually asks for. Five named parts, all
-pure TypeScript under `src/agent/` with no React Native imports so they stay testable outside the
-app:
+What it produces is one recordable run: tap a bundled job description → skills and topics extracted
+→ adaptive multi-turn interview → scored answers → ranked weakness report. On a phone, from a clean
+clone, with no API key, against a deterministic offline provider. The agent parts are pure
+TypeScript under `src/agent/` with no React Native imports, so they stay testable outside the app.
 
-- **Interview Planner** — turns a job description into an interview plan
-- **Question Generator** — produces questions from that plan
-- **Adaptive Follow-up** — presses when an answer is thin
-- **Evaluation Agent** — scores answers against rubrics
-- **Progress Memory** — tracks what still needs work
+- A continuous-integration quality gate on every pull request
+- A navigation skeleton: `index` / `session/[id]` / `review/[id]` / `settings`
+- The interview domain as validated schemas, plus session and settings stores
+- A model provider interface, with a deterministic offline provider as its first implementation —
+  canned response packs and a seeded generator, which is what keeps the whole demo keyless
+- **Interview Planner** — a pasted job description becomes required skills, topics, and a 3–6 stage
+  plan
+- Six sample job descriptions, so a first run needs no typing
+- The minimal interview loop — plan, ask, score, and probe when an answer is thin — as a state
+  machine over immutable reducers with a hard iteration cap, emitting a typed event stream from its
+  first commit. **Question Generator** and **Adaptive Follow-up** live here
+- Interviewer prompts and rubric schemas, which **Evaluation Agent** scores against
+- Session screen components: transcript, composer, status
+- The session screen wired to the agent's event stream — the vertical slice
+- The scoring and weakness screen: scorecard, turn replay, and ranked weaknesses, each carrying the
+  answer that evidenced it
+- Reset and seed actions, so the demo always starts from a known state
+- The README hero, with the recording of that run
 
-The loop runs against a deterministic offline provider first, so it is testable without a network
-or a key. Fixture-based evals under `evals/` ship in the same commit as the agent code they cover.
+What M1a deliberately does not ship: evals, unit tests, a design token system, accessibility
+primitives, a network path, and an architecture document. Every one of them is M1b, which opens
+four commits after the first screen — and this paragraph exists so that gap is recorded here rather
+than discovered by whoever reads the history.
 
-### M1b — bring your own key
+### M1b — proof it works (10 commits)
 
-Transcripts live in a local database on the device. Requests go straight to the provider the key
-belongs to, with no server in between. Screens under `src/app/`.
+The repository that survives being read slowly rather than skimmed.
 
-### M2 — decision records and public docs
+- A baseline eval harness against the offline provider, with a committed report carrying its own
+  provenance — no key, no emulator
+- Test infrastructure and real domain tests, back-filling the M1a agent core
+- A debug timeline that renders the agent event stream the loop already emits
+- Design tokens and accessibility-first primitives, with the M1a screens refactored onto them
+- A provider-agnostic stream parser
+- The primary cloud provider adapter, which is what makes the tier routing real
+- Bring-your-own-key storage: keys never touch files, never touch git
+- A subscription seam, with no paywall behind it yet
+- `docs/ARCHITECTURE.md` — the request pipeline and the data flow, hop by hop
+- The full README, extending the M1a hero rather than replacing it
 
-Decision records under `docs/adr/`, this file kept current as the scope contract, and the debt
-register mirrored into `docs/DEBT.md`.
+### M2 — depth, and the record of it (26 commits)
 
-### M3 — native module and release
+An evidence backlog ordered by what each item proves, not a checklist — deliberately cuttable from
+the tail.
 
-`modules/expo-audio-metering`, a local native module in Swift and Kotlin for audio level metering
-during spoken answers. Store submission.
+- `modules/expo-audio-metering` — a local native module, iOS in Swift and Android in Kotlin, behind
+  one TypeScript contract
+- A secondary provider adapter, which is what proves the interface was real
+- Quality and safety eval suites, extending the M1b baseline
+- **Progress Memory** — a weakness store and a spaced-repetition scheduler, so a second session
+  opens on what the first one exposed
+- Session persistence, resume, and turn-by-turn replay — including explaining a weak answer and
+  drafting a stronger one
+- Crash reporting that scrubs transcripts and job-description text, agent telemetry on the same
+  event stream, and a gallery of real failures with the fixes that closed them
+- Measured performance numbers, and an accessibility audit
+- Decision records with an index, the approaches that were rejected and why, and what is already
+  scheduled to be deleted
+- This file kept current, a published debt register, and the method and evidence documents
+
+### M3 — shipping proof (11 commits)
+
+- Typed local feature flags
+- A Pro paywall stub behind one of them, implementing the M1b subscription seam without touching a
+  call site
+- Build profiles, and a release path exercised end to end to both stores' internal tracks
+- The pre-release name gate, recorded in the history before any store asset exists
+- `SECURITY.md` — the threat model in one page
+- Store metadata, a release runbook, and v0.1.0
 
 ## How to read progress
 
