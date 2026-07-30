@@ -39,12 +39,14 @@
     "typescript": "~6.0.3"
   },
   "scripts": {
+    "prepare": "git config core.hooksPath .githooks",
     "start": "expo start",
     "reset-project": "node ./scripts/reset-project.js",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "expo lint",
+    "lint:deps": "expo install --check",
     "format": "prettier --write .",
     "typecheck": "tsc --noEmit"
   },
