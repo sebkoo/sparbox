@@ -51,8 +51,6 @@ each. Milestone entries ahead cover several commits and split into numbered step
 land, so nothing below them renumbers. Hashes and per-commit detail:
 [docs/ROADMAP.md](docs/ROADMAP.md).
 
-**Foundation — complete, commits 1–10**
-
 - ✅ **1. The app exists and runs** — Expo SDK 57, React Native 0.86.2 on the New Architecture, TypeScript in strict mode, MIT licensed
 - ✅ **2. Code quality has a definition** — strict compiler flags, a linter and a formatter with committed config, lockfile tracked
 - ✅ **3. Process has machinery** — commit hooks that reject non-conventional subjects, and the working agreement they enforce
@@ -62,7 +60,7 @@ land, so nothing below them renumbers. Hashes and per-commit detail:
 - ✅ **7. Tool-written files are declared** — the formatter and the toolchain stop overwriting each other's bytes
 - ✅ **8. The formatting standard is applied** — 25 tracked files brought into line, formatting only
 - ✅ **9. The formatting standard is enforced** — checked by the pre-commit hook, proven two-sided in a throwaway clone
-- ✅ **10. One gate, one threshold** — the lint script and the hook now agree on whether a warning is a failure
+- ✅ **10. One gate, one threshold** — the lint script and the hook now agree on whether a warning is a failure, and the foundation is complete here: ten commits, nothing past this one belongs to it
 - ✅ **11. The plan is public** — the scope contract lands in [docs/ROADMAP.md](docs/ROADMAP.md), and this ladder with it
 - ✅ **12. The front page stops repeating the ladder** — the intro's claim of a four-commit foundation stopped being true at the fifth
 - ✅ **13. The scope contract says what is actually planned** — the published milestones were re-derived rather than copied, and described a split that was never the plan
@@ -72,6 +70,7 @@ land, so nothing below them renumbers. Hashes and per-commit detail:
 - ✅ **17. Navigation has the shape of the demo** — `index → session/[id] → review/[id]`, plus `settings`, replace the two-tab starter; the route tree is the deep-link config, so `sparbox://session/123` already resolves
 - ✅ **18. The lint gate agrees with itself on generated files** — `.expo/` was already out of scope for `npm run lint`; the pre-commit hook's broader `eslint .` excludes it too now, so a locally generated file can't fail one path while passing the other
 - ✅ **19. The ladder stops grouping past the foundation** — a heading naming a category goes stale the same way one naming a milestone did; each entry above already says what it is on its own
+- ✅ **20. The ladder retires its last numbered heading** — a heading naming a commit range is a claim the next commit falsifies; the foundation's boundary now lives in entry 10's own text, which can't go stale because it names a fixed commit
 
 **Ahead**
 
@@ -81,7 +80,7 @@ land, so nothing below them renumbers. Hashes and per-commit detail:
 - **M3. Shipping proof** — feature flags, a paywall stub behind one of them, build profiles, an exercised release path to both stores, a security document, and v0.1.0.
 
 <!-- progress-contract
-commits=19
+commits=20
 -->
 
 ## Quick start
