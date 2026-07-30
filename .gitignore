@@ -47,3 +47,7 @@ example
 
 expo-env.d.ts
 # @end expo-cli
+
+# tool-written local settings, specific to one machine and never shared. Ignored in the repo
+# rather than in a personal global excludes file so the exclusion travels with a clone.
+.claude/settings.local.json

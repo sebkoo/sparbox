@@ -2,3 +2,7 @@ node_modules
 .expo
 dist
 package-lock.json
+
+# tool-owned: rewritten by their tools rather than by a person
+expo-env.d.ts
+.claude/settings.local.json
