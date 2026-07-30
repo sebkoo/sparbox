@@ -8,7 +8,7 @@ the commit named. Everything under **Planned** is not built.
 | Stage                            | Commits   | State       |
 | -------------------------------- | --------- | ----------- |
 | Foundation                       | 10 landed | complete    |
-| M1a — the demo path              | 13        | not started |
+| M1a — the demo path              | 13        | in progress |
 | M1b — proof it works             | 10        | not started |
 | M2 — depth, and the record of it | 26        | not started |
 | M3 — shipping proof              | 11        | not started |

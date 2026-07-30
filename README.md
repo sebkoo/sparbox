@@ -1,5 +1,6 @@
 # Sparbox — an AI interview simulator for mobile engineers
 
+[![CI](https://github.com/sebkoo/sparbox/actions/workflows/ci.yml/badge.svg)](https://github.com/sebkoo/sparbox/actions/workflows/ci.yml)
 [![React Native](https://img.shields.io/badge/React%20Native-0.86.2-61DAFB?logo=react&logoColor=black)](https://reactnative.dev/)
 [![Expo SDK](https://img.shields.io/badge/Expo%20SDK-57-000020?logo=expo&logoColor=white)](https://expo.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -69,15 +70,19 @@ land, so nothing below them renumbers. Hashes and per-commit detail:
 - ✅ **12. The front page stops repeating the ladder** — the intro's claim of a four-commit foundation stopped being true at the fifth
 - ✅ **13. The scope contract says what is actually planned** — the published milestones were re-derived rather than copied, and described a split that was never the plan
 
+**M1a — the demo path**
+
+- ✅ **14. The quality gate is visible** — the badge above; the workflow behind it has run on every push and pull request since the fifth commit
+
 **Ahead**
 
-- 🔜 **M1a. The demo path** — 13 commits. Tap a bundled job description, get interviewed on the skills it actually asks for, get scored, and get a ranked weakness report — on a phone, from a clean clone, with no API key, against a deterministic offline provider. **Interview Planner** → **Question Generator** → **Adaptive Follow-up** → **Evaluation Agent**, pure TypeScript under `src/agent/`. Ends with the recording of that run at the top of this page.
+- 🔜 **M1a. The demo path** — 12 of 13 commits remain. Tap a bundled job description, get interviewed on the skills it actually asks for, get scored, and get a ranked weakness report — on a phone, from a clean clone, with no API key, against a deterministic offline provider. **Interview Planner** → **Question Generator** → **Adaptive Follow-up** → **Evaluation Agent**, pure TypeScript under `src/agent/`. Ends with the recording of that run at the top of this page.
 - **M1b. Proof it works** — an eval harness with a committed report, test infrastructure, a debug timeline of the agent's own events, design tokens and accessibility primitives, the network path with bring-your-own-key storage, and the architecture document.
 - **M2. Depth, and the record of it** — `modules/expo-audio-metering` in Swift and Kotlin for spoken answers; quality and safety eval suites; **Progress Memory**, so a second session opens on what the first one exposed; persistence and turn-by-turn replay; telemetry and a gallery of real failures; decision records, rejected approaches, and future removals.
 - **M3. Shipping proof** — feature flags, a paywall stub behind one of them, build profiles, an exercised release path to both stores, a security document, and v0.1.0.
 
 <!-- progress-contract
-commits=13
+commits=14
 -->
 
 ## Quick start
