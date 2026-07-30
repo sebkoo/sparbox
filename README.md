@@ -73,6 +73,7 @@ land, so nothing below them renumbers. Hashes and per-commit detail:
 - ✅ **15. The testing rule says what it actually requires** — logic owes tests, a prompt or a rubric's criteria owes a fixture, and only the regression baseline waits for the eval harness
 - ✅ **16. The ladder stops claiming milestones** — a heading naming a milestone goes wrong the first time a commit lands inside that milestone without belonging to it, which had already happened here
 - ✅ **17. Navigation has the shape of the demo** — `index → session/[id] → review/[id]`, plus `settings`, replace the two-tab starter; the route tree is the deep-link config, so `sparbox://session/123` already resolves
+- ✅ **18. The lint gate agrees with itself on generated files** — `.expo/` was already out of scope for `npm run lint`; the pre-commit hook's broader `eslint .` excludes it too now, so a locally generated file can't fail one path while passing the other
 
 **Ahead**
 
@@ -82,7 +83,7 @@ land, so nothing below them renumbers. Hashes and per-commit detail:
 - **M3. Shipping proof** — feature flags, a paywall stub behind one of them, build profiles, an exercised release path to both stores, a security document, and v0.1.0.
 
 <!-- progress-contract
-commits=17
+commits=18
 -->
 
 ## Quick start

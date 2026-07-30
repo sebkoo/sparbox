@@ -4,5 +4,5 @@ const prettierConfig = require("eslint-config-prettier");
 module.exports = defineConfig([
   expoConfig,
   prettierConfig,
-  { ignores: ["dist/*"] },
+  { ignores: ["dist/*", ".expo/*"] },
 ]);
