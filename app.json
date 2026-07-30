@@ -1,16 +1,18 @@
 {
   "expo": {
-    "name": "sparbox",
+    "name": "Sparbox",
     "slug": "sparbox",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "sparbox",
     "userInterfaceStyle": "automatic",
     "ios": {
+      "bundleIdentifier": "com.sebkoo.sparbox",
       "icon": "./assets/expo.icon"
     },
     "android": {
+      "package": "com.sebkoo.sparbox",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
