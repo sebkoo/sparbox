@@ -4,7 +4,7 @@ An AI-powered mobile interview simulator: paste a job description, get interview
 get scored. TypeScript strict. Expo Router. Milestones M1 (interview loop MVP) →
 M2 (depth) → M3 (native + release); see ../sparbox-kit/context/roadmap.md.
 
-## Map (— = exists · ○ = planned; docs/ROADMAP.md is the public scope contract, M2)
+## Map (— = exists · ○ = planned; docs/ROADMAP.md is the public scope contract)
 
 - app.json, tsconfig, eslint.config.js — foundation (commits #1–#4)
 - src/app/ ○ Expo Router screens
