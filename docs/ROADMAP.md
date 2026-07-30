@@ -8,7 +8,7 @@ the commit named. Everything under **Planned** is not built.
 | Stage                            | Commits   | State       |
 | -------------------------------- | --------- | ----------- |
 | Foundation                       | 10 landed | complete    |
-| M1a — the demo path              | 13        | in progress |
+| M1a — the demo path              | 14        | in progress |
 | M1b — proof it works             | 10        | not started |
 | M2 — depth, and the record of it | 26        | not started |
 | M3 — shipping proof              | 11        | not started |
@@ -30,7 +30,7 @@ the commit named. Everything under **Planned** is not built.
 
 ## Planned
 
-### M1a — the demo path (13 commits)
+### M1a — the demo path (14 commits)
 
 What it produces is one recordable run: tap a bundled job description → skills and topics extracted
 → adaptive multi-turn interview → scored answers → ranked weakness report. On a phone, from a clean
@@ -40,6 +40,9 @@ TypeScript under `src/agent/` with no React Native imports, so they stay testabl
 - A continuous-integration quality gate on every pull request
 - A navigation skeleton: `index` / `session/[id]` / `review/[id]` / `settings`
 - The interview domain as validated schemas, plus session and settings stores
+- A minimal test runner, with those schemas' round-trips as its first tests, enforced by the
+  pre-commit hook and by CI from that commit on. Deliberately not the eval harness, which stays in
+  M1b — this is the runner alone, so that the commits which follow can carry their own evidence
 - A model provider interface, with a deterministic offline provider as its first implementation —
   canned response packs and a seeded generator, which is what keeps the whole demo keyless
 - **Interview Planner** — a pasted job description becomes required skills, topics, and a 3–6 stage

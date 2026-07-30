@@ -48,7 +48,12 @@ Plan → Implement → Verify (typecheck/lint/tests) → Review the diff → Com
   no agent-authored change lands unreviewed) belongs in docs/ai/METHOD.md, written
   vendor-neutrally. The repo shows how it was engineered, not what typed it.
 - Architectural decisions get an ADR, committed WITH the implementation.
-- src/agent changes ship WITH eval changes in the same commit. No exceptions.
+- src/agent changes ship WITH their evidence, same commit, no exceptions — the
+  evidence differs by what the commit ships. Logic owes tests. A prompt, or a
+  rubric's criteria, owes a fixture, and a fixture with no negative case proves
+  nothing. Only the regression baseline waits for the eval harness, because a
+  baseline needs a second version to be a baseline of. A rubric SCHEMA is
+  structure and owes tests; rubric CRITERIA are content and owe fixtures.
 - Ask before adding any dependency; justify it in the commit body.
 
 ## Operating rules
