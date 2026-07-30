@@ -25,8 +25,8 @@ transcripts on their servers. I'm a senior iOS
 engineer going cross-platform, building the coach I wanted: open source,
 mobile-first, bring-your-own-key. Transcripts will live in a local database on
 your phone, and prompts will go straight to the provider you bring a key for —
-no server of mine in between. It will practice *with* you; it won't whisper
-answers *for* you.
+no server of mine in between. It will practice _with_ you; it won't whisper
+answers _for_ you.
 
 ## Quick start
 

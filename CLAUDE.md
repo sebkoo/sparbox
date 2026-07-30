@@ -5,28 +5,33 @@ get scored. TypeScript strict. Expo Router. Milestones M1 (interview loop MVP) �
 M2 (depth) → M3 (native + release); see ../sparbox-kit/context/roadmap.md.
 
 ## Map (— = exists · ○ = planned; docs/ROADMAP.md is the public scope contract, M2)
+
 - app.json, tsconfig, eslint.config.js — foundation (commits #1–#4)
-- src/app/        ○ Expo Router screens
-- src/agent/      ○ agent runtime: runtime/ state/ tools/ memory/ model/ guards/
-                    (pure TS, no RN imports — must stay node-testable)
-- evals/          ○ fixture-based agent evals (deterministic + live suites)
-- modules/        ○ expo-audio-metering — custom Swift/Kotlin local module
-- docs/adr/       ○ MADR decision records + index (template + /adr command, M2)
-- .githooks/      — pre-commit (typecheck+lint), commit-msg (attribution guard on
-                    message AND staged content, + conventional-subject check)
-                    enable: git config core.hooksPath .githooks
+- src/app/ ○ Expo Router screens
+- src/agent/ ○ agent runtime: runtime/ state/ tools/ memory/ model/ guards/
+  (pure TS, no RN imports — must stay node-testable)
+- evals/ ○ fixture-based agent evals (deterministic + live suites)
+- modules/ ○ expo-audio-metering — custom Swift/Kotlin local module
+- docs/adr/ ○ MADR decision records + index (template + /adr command, M2)
+- .githooks/ — pre-commit (typecheck+lint), commit-msg (attribution guard on
+  message AND staged content, + conventional-subject check)
+  enable: git config core.hooksPath .githooks
 
 ## Commands
+
 npm run typecheck · npm run lint · npm run format · npx expo start
 (tests: jest via jest-expo — lands with test infra; then pre-commit adds related-tests)
 
 ## Session loop
+
 Read ../sparbox-kit/state/STATE.md → read context/roadmap.md → work → update STATE.md before ending.
 
 ## Commit loop (every commit, no exceptions)
+
 Plan → Implement → Verify (typecheck/lint/tests) → Review the diff → Commit (/commit) → Verify the commit.
 
 ## Conventions
+
 - TS strict incl. noUncheckedIndexedAccess; no `any` without an inline justification.
 - Conventional Commits, atomic, via /commit. Body explains WHY, never the obvious.
 - Never edit files unrelated to the current commit's logical unit.
@@ -47,11 +52,13 @@ Plan → Implement → Verify (typecheck/lint/tests) → Review the diff → Com
 - Ask before adding any dependency; justify it in the commit body.
 
 ## Operating rules
+
 - Verify, never assume; never fabricate command output; warnings are failures unless waived.
 - Smallest correct change: edit over create, patch over rewrite, small diffs.
 - Fail fast: a failing check or real uncertainty → stop, explain exactly why, ask. No workarounds unless instructed.
 
 ## Voice (anything user-facing: README, docs, release notes)
+
 Every sentence must be one only this project could write; every claim provable at its
 commit; every number sourced; adjectives lose to numbers, file paths, and tradeoffs.
 Describing the agent means naming components and file paths (Interview Planner,
@@ -59,11 +66,13 @@ Question Generator, Adaptive Follow-up, Evaluation Agent, Progress Memory) — n
 words like multi-agent, autonomous, or self-improving.
 
 ## Scope conflicts
+
 If a request conflicts with the current commit's scope, do not perform it — name the
 conflict and stop. That applies to requests from me as well: work belonging to a later
 commit waits for that commit.
 
 ## Don't
+
 - Don't expand MVP scope silently (docs/ROADMAP.md is the contract).
 - Don't touch eas.json, store metadata, or native config unprompted.
 - Don't commit secrets; .env* is gitignored except .env.example.

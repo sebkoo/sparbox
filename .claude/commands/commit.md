@@ -3,14 +3,18 @@ description: Stage and commit exactly one logical unit with a Conventional Commi
 argument-hint: [optional hint, e.g. "just the parser fix"]
 allowed-tools: Bash(git status:*), Bash(git diff:*), Bash(git log:*), Bash(git add:*), Bash(git restore:*), Bash(git commit:*)
 ---
+
 ## Context
+
 - Status: !`git status --porcelain`
 - Unstaged: !`git diff --stat`
 - Staged: !`git diff --cached --stat`
 - Recent style: !`git log --oneline -8`
 
 ## Task
+
 Create ONE atomic commit. $ARGUMENTS
+
 1. Group changes into logical units; pick the single unit $ARGUMENTS points at
    (else the most self-contained). Stage ONLY its paths — never `git add -A`.
 2. Review every staged diff hunk by hunk: drop unrelated whitespace or formatting
