@@ -4,10 +4,8 @@
 [![Expo SDK](https://img.shields.io/badge/Expo%20SDK-57-000020?logo=expo&logoColor=white)](https://expo.dev)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-**What exists today:** the foundation of a React Native app —
-React Native 0.86.2, TypeScript in strict mode, MIT
-licensed. There is no interview loop yet. Engineering standards, git hooks, and
-app identity are the other three foundation commits.
+**What exists today:** the foundation of a React Native app. There is no interview
+loop yet.
 
 **What it is being built into:** paste the job description you're applying
 against; an agent plans an interview around the skills it actually asks for,
@@ -64,6 +62,7 @@ land, so nothing below them renumbers. Hashes and per-commit detail:
 - ✅ **8. The formatting standard is applied** — 25 tracked files brought into line, formatting only
 - ✅ **9. The formatting standard is enforced** — checked by the pre-commit hook, proven two-sided in a throwaway clone
 - ✅ **10. One gate, one threshold** — the lint script and the hook now agree on whether a warning is a failure
+- ✅ **12. The front page stops repeating the ladder** — the intro's claim of a four-commit foundation stopped being true at the fifth
 
 **Ahead**
 
@@ -73,7 +72,7 @@ land, so nothing below them renumbers. Hashes and per-commit detail:
 - **M3. Native audio metering, then release** — `modules/expo-audio-metering` in Swift and Kotlin, for spoken answers — then the app stores.
 
 <!-- progress-contract
-commits=11
+commits=12
 -->
 
 ## Quick start
