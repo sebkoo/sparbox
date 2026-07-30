@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+set -e
+echo "pre-commit: typecheck" && npx tsc --noEmit --pretty false
+echo "pre-commit: lint"      && npx eslint . --max-warnings 0

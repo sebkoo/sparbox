@@ -1,0 +1,86 @@
+#!/usr/bin/env sh
+# Guards every commit. $1 = path to the message file.
+#   1) no AI attribution in the message
+#   2) no AI attribution anywhere in the staged content
+#   3) Conventional Commit subject
+# Runs from the first commit onward — the guard predates the history it guards.
+
+# Attribution-shaped, not vendor-name-shaped — and split by shape, because the two places
+# attribution appears have different structure:
+#
+#   Branch 1, the trailer NAME field.  "Co-authored-by:" is a STRUCTURED field, so the
+#     name is scanned whole — bounded by [^<] so it stops at the address. No word budget
+#     to guess at: "GitHub Copilot", "GitHub Advanced Copilot", and whatever ships next
+#     are all caught, because no legitimate co-author is named after an AI tool. This is
+#     also why automation bots pass without an allowlist — "GitHub Actions", "Dependabot",
+#     "Renovate Bot" carry no vendor token, so nothing needs maintaining when a new bot
+#     arrives. Stopping at "<" is what keeps <kai@gpt.example.com> from being read as a
+#     vendor, and the boundary classes keep a human named Kai, Aisha, or McGPT clean.
+#
+#     Accepted tradeoff: a human genuinely named "John GPT Smith" is blocked too. In a repo
+#     whose contract is single-author that cannot happen, the failure is loud, and the fix
+#     is one word — whereas dropping the name scan would let "Co-authored-by: Claude
+#     <noreply@example.com>" through. Both accepted cases are pinned in the calibration set.
+#
+#   Branch 2, the trailer ADDRESS.  GitHub attributes contributors by EMAIL, not by name,
+#     so a trailer with an innocuous name and a vendor address still puts the tool in the
+#     contributor list — which is the one outcome this whole guard exists to prevent.
+#     Registered vendor domains only, anchored at a dot boundary: noreply@anthropic.com and
+#     bot@sub.openai.com are caught, jane@myanthropic.com and kai@gpt.example.com are not.
+#
+#   Branch 3, prose.  Free text has no structure, so the verb must be bound to "by"/"with".
+#     That is the difference between "Created with Copilot" (attribution) and "created AI
+#     rubrics" (a description of work) — which matters here, because this project is ABOUT
+#     AI and says so constantly. A false positive teaches people to reach for --no-verify,
+#     and a guard people route around is worse than no guard.
+#
+# Every vendor closes with ([^[:alnum:]]|$), so GPTTokenizer.swift stays clean while a bare
+# "GPT" at end of line is caught. This pattern is duplicated in sparbox-kit/verify.sh and
+# the two must stay identical; verify.sh proves it and runs 54 calibration cases against it.
+# Prevention weaker than detection means the leak lands in history and costs a rebase.
+ATTRIB='co-authored-by:([^<]*[^<[:alnum:]])?(ai|claude|anthropic|copilot|cursor|codex|gemini|openai|gpt)([^[:alnum:]]|$)|co-authored-by:[^<]*<[^>]*@([^>]*\.)?(anthropic\.com|openai\.com|cursor\.sh|cursor\.com)|(generated|created|written|authored|assisted)[^[:alnum:]]{0,4}(by|with)[^[:alnum:]]{0,12}(github|google|microsoft|openai)?[^[:alnum:]]{0,4}(ai|an ai|claude|anthropic|copilot|cursor|codex|gemini|openai|gpt)([^[:alnum:]]|$)|claude\.(ai|com)/code'
+
+if grep -qiE "$ATTRIB" "$1"; then
+  echo "ERROR: AI attribution in the commit message." >&2
+  echo "  match: $(grep -inE "$ATTRIB" "$1" | head -3)" >&2
+  echo "  (.claude/settings.json should prevent this — see CLAUDE.md.)" >&2
+  exit 1
+fi
+
+# Content scan. The three files that document the ban are the only place these
+# strings may appear; everything else is a leak. Vendor names inside source
+# filenames and adapter code are legitimate and are NOT machine-checked here —
+# that judgment belongs to the voice pass, not to a hook that would cry wolf.
+FILES=$(git diff --cached --name-only --diff-filter=ACMR \
+        | grep -vE '^(CLAUDE\.md|\.claude/|\.githooks/)' || true)
+if [ -n "$FILES" ]; then
+  HITS=$(echo "$FILES" | tr '\n' '\0' | xargs -0 grep -nIHiE "$ATTRIB" 2>/dev/null || true)
+  if [ -n "$HITS" ]; then
+    echo "ERROR: prohibited attribution detected in staged content." >&2
+    echo "$HITS" | while IFS= read -r hit; do
+      f=${hit%%:*}; rest=${hit#*:}; l=${rest%%:*}; m=${rest#*:}
+      echo "  File:  $f"  >&2
+      echo "  Line:  $l"  >&2
+      echo "  Match: $m"  >&2
+      echo "" >&2
+    done
+    echo "Remove the attribution, restage, and retry the commit." >&2
+    echo "Never --no-verify. If it already reached history: git commit --amend or rebase — never reset --hard." >&2
+    exit 1
+  fi
+fi
+
+SUBJECT=$(head -1 "$1")
+case "$SUBJECT" in
+  Merge*|Revert*|fixup!*|squash!*|'#'*) exit 0 ;;
+esac
+
+if ! echo "$SUBJECT" | grep -qE '^(feat|fix|docs|style|refactor|perf|test|build|ci|chore)(\([a-z0-9._-]+\))?!?: [a-z].{0,58}$'; then
+  echo "ERROR: commit subject is not a Conventional Commit." >&2
+  echo "  expected: type(scope): imperative subject — lowercase, <= 72 chars" >&2
+  echo "  types: feat fix docs style refactor perf test build ci chore" >&2
+  echo "  got: $SUBJECT" >&2
+  exit 1
+fi
+
+exit 0
