@@ -3,3 +3,12 @@ set -e
 echo "pre-commit: typecheck" && npx tsc --noEmit --pretty false
 echo "pre-commit: lint"      && npx eslint . --max-warnings 0
 echo "pre-commit: format"    && npx prettier --check .
+echo "pre-commit: test"
+# ACMR drops deletions: --findRelatedTests errors on a path that no longer exists.
+# `|| true` because a grep that matches nothing exits 1, and set -e would kill the hook.
+STAGED_TS=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.tsx?$' || true)
+# `if` rather than `[ -n "$X" ] && ...`: the && form returns 1 on an empty list, which under
+# set -e would fail every docs-only commit.
+if [ -n "$STAGED_TS" ]; then
+  npx jest --findRelatedTests $STAGED_TS --passWithNoTests
+fi

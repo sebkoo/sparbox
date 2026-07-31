@@ -22,8 +22,10 @@ M2 (depth) → M3 (native + release); see ../sparbox-kit/context/roadmap.md.
 
 ## Commands
 
-npm run typecheck · npm run lint · npm run format · npx expo start
-(tests: jest via jest-expo — lands with test infra; then pre-commit adds related-tests)
+npm run typecheck · npm run lint · npm run format · npm test · npx expo start
+(jest, one `node` project — no RN transform, so the pure layers stay node-testable.
+The jest-expo/RNTL project lands with the first component test. Pre-commit runs
+`--findRelatedTests` on staged .ts/.tsx; CI runs the whole suite.)
 
 ## Session loop
 
