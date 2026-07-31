@@ -32,6 +32,8 @@ answers _for_ you.
 ```
 sparbox/
 ├── src/app/        ○  screens (Expo Router)
+├── src/domain/     —  session, turn, rubric and score as validated schemas
+├── src/stores/     ○  session and settings state, read by screens
 ├── src/agent/      ○  the interview loop — pure TypeScript, no React Native
 │                      imports, node-testable
 ├── evals/          ○  fixture-based agent evals
@@ -71,16 +73,17 @@ land, so nothing below them renumbers. Hashes and per-commit detail:
 - ✅ **18. The lint gate agrees with itself on generated files** — `.expo/` was already out of scope for `npm run lint`; the pre-commit hook's broader `eslint .` excludes it too now, so a locally generated file can't fail one path while passing the other
 - ✅ **19. The ladder stops grouping past the foundation** — a heading naming a category goes stale the same way one naming a milestone did; each entry above already says what it is on its own
 - ✅ **20. The ladder retires its last numbered heading** — a heading naming a commit range is a claim the next commit falsifies; the foundation's boundary now lives in entry 10's own text, which can't go stale because it names a fixed commit
+- ✅ **21. The interview domain is a validated shape, not a convention** — session, turn, rubric and score become schemas that reject malformed input at runtime, and the boundary that keeps the interview loop free of React Native, of the stores, and of the validator itself is now a lint rule rather than an intention
 
 **Ahead**
 
-- 🔜 **M1a. The demo path** — 12 of 14 commits remain. Tap a bundled job description, get interviewed on the skills it actually asks for, get scored, and get a ranked weakness report — on a phone, from a clean clone, with no API key, against a deterministic offline provider. **Interview Planner** → **Question Generator** → **Adaptive Follow-up** → **Evaluation Agent**, pure TypeScript under `src/agent/`. Ends with the recording of that run at the top of this page.
+- 🔜 **M1a. The demo path** — 12 of 15 commits remain. Tap a bundled job description, get interviewed on the skills it actually asks for, get scored, and get a ranked weakness report — on a phone, from a clean clone, with no API key, against a deterministic offline provider. **Interview Planner** → **Question Generator** → **Adaptive Follow-up** → **Evaluation Agent**, pure TypeScript under `src/agent/`. Ends with the recording of that run at the top of this page.
 - **M1b. Proof it works** — an eval harness with a committed report, test infrastructure, a debug timeline of the agent's own events, design tokens and accessibility primitives, the network path with bring-your-own-key storage, and the architecture document.
 - **M2. Depth, and the record of it** — `modules/expo-audio-metering` in Swift and Kotlin for spoken answers; quality and safety eval suites; **Progress Memory**, so a second session opens on what the first one exposed; persistence and turn-by-turn replay; telemetry and a gallery of real failures; decision records, rejected approaches, and future removals.
 - **M3. Shipping proof** — feature flags, a paywall stub behind one of them, build profiles, an exercised release path to both stores, a security document, and v0.1.0.
 
 <!-- progress-contract
-commits=20
+commits=21
 -->
 
 ## Quick start

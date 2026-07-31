@@ -8,8 +8,11 @@ M2 (depth) → M3 (native + release); see ../sparbox-kit/context/roadmap.md.
 
 - app.json, tsconfig, eslint.config.js — foundation (commits #1–#4)
 - src/app/ ○ Expo Router screens
+- src/domain/ — interview schemas + the Parser<T> seam (pure TS, node-testable)
+- src/stores/ ○ session + settings stores — UI state, read by screens
 - src/agent/ ○ agent runtime: runtime/ state/ tools/ memory/ model/ guards/
-  (pure TS, no RN imports — must stay node-testable)
+  (pure TS, no RN imports — must stay node-testable; eslint.config.js forbids it
+  importing @/stores, @/app, react, react-native, expo*, and zod)
 - evals/ ○ fixture-based agent evals (deterministic + live suites)
 - modules/ ○ expo-audio-metering — custom Swift/Kotlin local module
 - docs/adr/ ○ MADR decision records + index (template + /adr command, M2)
